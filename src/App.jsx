@@ -1,29 +1,29 @@
-import { Component } from 'react'
+import { useState } from 'react'
 import './AppStyles.css'
 import CharacterList from './components/CharacterList'
 import CharacterDetail from './components/CharacterDetail'
 
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedCustomerId: null,
-      selectedOrderId: null // => 1 or 2
-    };
-  }
+function App() {
+  const [characterId, setCharacterId] = useState(null);
 
-  render() {
+  function handleCharacterSelect(characterId) {
+    setCharacterId(characterId)
+  }
+  
 
     return (
       <div className='app-container'>
         <h1>Our Characters</h1>
-        <CharacterList />
-        <CharacterDetail />
-
+        <CharacterList setCharacterId = {handleCharacterSelect}/>
+        {
+          characterId && (
+            <CharacterDetail character = {characterId}/>
+          )
+        }
       </div>
     );
-  }
+  
 }
 
 export default App;
