@@ -1,7 +1,12 @@
-import { useState } from 'react'
-import './AppStyles.css'
-import CharacterList from './components/CharacterList'
-import CharacterDetail from './components/CharacterDetail'
+import { useState } from 'react';
+import './AppStyles.css';
+import CharacterList from './components/BrowseCharacters';
+import CharacterDetail from './components/CharacterDetail';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import NavigationBar from './components/NavigationBar';
+import Home from './components/Home';
+
+
 
 
 function App() {
@@ -14,13 +19,16 @@ function App() {
 
     return (
       <div className='app-container'>
-        <h1>Our Characters</h1>
-        <CharacterList setCharacterId = {handleCharacterSelect}/>
-        {
-          characterId && (
-            <CharacterDetail character = {characterId}/>
-          )
-        }
+        <NavigationBar />
+        <Routes>
+        <Route path='/' element={<Home />} />
+          <CharacterList setCharacterId = {handleCharacterSelect}/>
+          {
+            characterId && (
+              <CharacterDetail character = {characterId}/>
+            )
+          }
+        </Routes>
       </div>
     );
   
