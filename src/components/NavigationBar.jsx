@@ -3,11 +3,23 @@ import { NavLink } from "react-router-dom";
 function NavigationBar() {
     return (
         <nav className="clearfix">
-            {/* <Link to='/add-customer' >Add Customer</Link>
-            <Link to='customers' >Customers</Link> */}
-            <NavLink to='/characters' activeClassName="active">Characters</NavLink>
+            {/* Navigation links */}
+            <NavLink 
+                to='/' 
+                className={({ isActive }) => isActive ? "active" : ""} 
+                end
+            >
+                Home
+            </NavLink>
+
+            <NavLink 
+                to='/characters' 
+                className={({ isActive }) => isActive ? "active" : ""}
+            >
+                Characters
+            </NavLink>
         </nav>
-    )
+    );
 }
 
-export default NavigationBar
+export default NavigationBar;
